@@ -56,7 +56,7 @@ RSpec.describe 'Customer subscription API', type: :request do
       response '404', 'Not found' do 
         let(:customer) { create(:customer) }
         let(:params) { { customer_id: customer.id, subscription_id: 4 } }
-        
+
         run_test! do |response|
           not_found = JSON.parse(response.body, symbolize_names: true)
           expect(not_found[:error]).to eq("Couldn't find Subscription with 'id'=4")

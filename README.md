@@ -4,7 +4,7 @@
 
 ![ruby-image]
 
-A rails back-end REST API. Eat and Educate allows a front-end app to find recipes from a country, and combine them with informative videos and images from that country. Also implements secure registration so users can favorite recipes. Created in a five day sprint.
+A rails back-end REST API. Tea Subscription allows a front-end app to sign a customer up for a subscription, cancel a subscription, and see a customer's subscription. Created in about six hours.
 
 Created with Rails 5.2.8
 
