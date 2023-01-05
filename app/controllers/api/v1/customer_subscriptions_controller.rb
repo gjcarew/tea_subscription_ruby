@@ -16,6 +16,6 @@ class Api::V1::CustomerSubscriptionsController < ApplicationController
   def update
     cust_sub = CustomerSubscription.find(params[:id])
     cust_sub.update!(status: 'canceled')
-    render status: :no_content
+    render json: CustomerSubscriptionSerializer.new(cust_sub)
   end
 end

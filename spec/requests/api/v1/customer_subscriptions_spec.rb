@@ -72,9 +72,21 @@ RSpec.describe 'Customer subscription API', type: :request do
       produces 'application/json'
       parameter name: :id, in: :path, type: :string, description: 'Customer subscription id'
 
-      response '204', 'Subscription canceled' do 
+      response '200', 'Subscription canceled' do 
         let(:id) { create(:customer_subscription).id }
-        run_test!
+        run_test! do |response|
+          customer_subscription = JSON.parse(response.body, symbolize_names: true)
+          attributes = customer_subscription[:data][:attributes]
+          expect(attributes[:status]).to eq('canceled')
+        end
+      end
+
+      response '404', 'Customer subscription not found' do 
+        let(:id) { '4' }
+        run_test! do |response|
+          not_found = JSON.parse(response.body, symbolize_names: true)
+          expect(not_found[:error]).to eq("Couldn't find CustomerSubscription with 'id'=4")
+        end
       end
     end
   end
