@@ -8,3 +8,4 @@
 evan = Customer.create!(fname: 'Evan', lname: 'Wheeler', email: 'swarsfan@turing.edu', address: '504 Turing lane')
 evan.subscriptions.create!(title: 'Green and Citrus Teas', price: 12.50, frequency: 14)
 evan.subscriptions.create!(title: 'African Chai', price: 17.25, frequency: 31)
+Subscription.create!(title: 'Hot chocolate', price: 14.00, frequency: 10)
