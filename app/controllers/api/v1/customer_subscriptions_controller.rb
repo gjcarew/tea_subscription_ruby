@@ -14,6 +14,8 @@ class Api::V1::CustomerSubscriptionsController < ApplicationController
   end
 
   def update
-
+    cust_sub = CustomerSubscription.find(params[:id])
+    cust_sub.update!(status: 'canceled')
+    render status: :no_content
   end
 end

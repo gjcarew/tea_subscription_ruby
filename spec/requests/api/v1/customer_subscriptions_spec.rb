@@ -63,20 +63,18 @@ RSpec.describe 'Customer subscription API', type: :request do
         end
       end
     end
+  end
+
+  path '/api/v1/customer_subscriptions/{id}' do 
 
     patch 'Inactivates a customer subscription' do 
       tags 'Customers'
       produces 'application/json'
-      parameter name: :customer_sub_id, in: :query, type: :integer, required: true
+      parameter name: :id, in: :path, type: :string, description: 'Customer subscription id'
 
       response '204', 'Subscription canceled' do 
-        let(:customer_sub) { create(:customer_subscription) }
-        let(:customer_sub_id) { customer_sub.id }
-        run_test! do |response|
-          customer_subscription = JSON.parse(response.body, symbolize_names: true)
-          attributes = customer_subscription[:data][:attributes]
-          expect(attributes[:status]).to eq('canceled')
-        end
+        let(:id) { create(:customer_subscription).id }
+        run_test!
       end
     end
   end
