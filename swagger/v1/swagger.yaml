@@ -1,0 +1,27 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/customer_subscriptions":
+    get:
+      summary: Gets a list of a customer's subscriptions
+      tags:
+      - Customers
+      parameters:
+      - name: customer_id
+        in: query
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Customer subscriptions found
+        '404':
+          description: Customer not found
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000
