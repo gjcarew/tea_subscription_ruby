@@ -20,6 +20,46 @@ paths:
           description: Customer subscriptions found
         '404':
           description: Customer not found
+    post:
+      summary: Subscribes a customer to a tea subscription
+      tags:
+      - Customers
+      parameters: []
+      responses:
+        '201':
+          description: Subscription added
+        '404':
+          description: Not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: integer
+                subscription_id:
+                  type: integer
+              required:
+              - customer_id
+              - subscription_id
+  "/api/v1/customer_subscriptions/{id}":
+    patch:
+      summary: Inactivates a customer subscription
+      tags:
+      - Customers
+      parameters:
+      - name: id
+        in: path
+        description: Customer subscription id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Subscription canceled
+        '404':
+          description: Customer subscription not found
 servers:
 - url: http://{defaultHost}
   variables:
