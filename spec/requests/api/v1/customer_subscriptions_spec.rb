@@ -63,5 +63,21 @@ RSpec.describe 'Customer subscription API', type: :request do
         end
       end
     end
+
+    patch 'Inactivates a customer subscription' do 
+      tags 'Customers'
+      produces 'application/json'
+      parameter name: :customer_sub_id, in: :query, type: :integer, required: true
+
+      response '204', 'Subscription canceled' do 
+        let(:customer_sub) { create(:customer_subscription) }
+        let(:customer_sub_id) { customer_sub.id }
+        run_test! do |response|
+          customer_subscription = JSON.parse(response.body, symbolize_names: true)
+          attributes = customer_subscription[:data][:attributes]
+          expect(attributes[:status]).to eq('canceled')
+        end
+      end
+    end
   end
 end
