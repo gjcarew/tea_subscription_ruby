@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :customer do
-    fname { "MyString" }
-    lname { "MyString" }
-    email { "MyString" }
-    address { "MyString" }
+    fname { Faker::Name.first_name }
+    lname { Faker::Name.last_name }
+    email { Faker::Internet.email }
+    address { Faker::Address.full_address }
   end
 end
