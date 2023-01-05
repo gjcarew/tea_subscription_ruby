@@ -8,7 +8,6 @@ paths:
     get:
       summary: Gets a list of a customer's subscriptions
       tags:
-      - Subscriptions
       - Customers
       parameters:
       - name: customer_id
@@ -19,8 +18,10 @@ paths:
       responses:
         '200':
           description: Customer subscriptions found
+        '404':
+          description: Customer not found
 servers:
-- url: https://{defaultHost}
+- url: http://{defaultHost}
   variables:
     defaultHost:
-      default: www.example.com
+      default: localhost:3000
